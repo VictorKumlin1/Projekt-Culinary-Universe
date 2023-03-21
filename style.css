@@ -30,3 +30,39 @@ a {
     text-decoration: none;
     margin:0 30px
 }
+
+#searchbar {
+    width:120px;
+    height:30px;
+    border-radius: 5px;
+    border: 2px solid #6c757d;
+    color:#6c757d
+}
+
+
+/* .recipe-link {
+    display: flex;
+    align-items: center;
+  } */
+
+main {
+    height:100vh
+}
+
+#bar {
+    height: 60px;
+    width:600px;
+    margin:250px auto;
+    border: 3px solid #212529;
+    border-radius: 10px;
+    font-size: 20px;
+    color:#212529;
+
+
+}
+
+.wrapper {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
