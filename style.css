@@ -31,7 +31,7 @@ a {
     margin:0 30px
 }
 
-#searchbar {
+#txtSearch {
     width:120px;
     height:30px;
     border-radius: 5px;
@@ -40,19 +40,15 @@ a {
 }
 
 
-/* .recipe-link {
-    display: flex;
-    align-items: center;
-  } */
 
 main {
     height:100vh
 }
 
-#bar {
+#txtSearch {
     height: 60px;
     width:600px;
-    margin:250px auto;
+    margin:250px 0;
     border: 3px solid #212529;
     border-radius: 10px;
     font-size: 20px;
@@ -61,8 +57,42 @@ main {
 
 }
 
-.wrapper {
+.other-container {
     display:flex;
     justify-content: center;
     align-items: center;
+    gap:20px
+    
 }
+
+
+
+#output {
+    background-color: #6c757d;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+
+.object-div {
+    display:grid;
+    width:calc(33.33% - 20px);
+    margin: 50px 0;
+    justify-content: center;
+
+
+}
+
+.object-div img {
+    border-radius: 5px; 
+}
+
+
+
+
