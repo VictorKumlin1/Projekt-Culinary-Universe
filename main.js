@@ -1,6 +1,6 @@
 // search = document.getElementById("sök-knapp")
-hamurger = document.querySelector(".hamburger");
-hamurger.onclick = function () {
+hamburger = document.querySelector(".hamburger");
+hamburger.onclick = function () {
   navBar = document.querySelector(".nav-bar");
   navBar.classList.toggle("active");
 };
@@ -38,6 +38,9 @@ async function search(searchString) {
   let apiKey = "f031cac33f4e4de5b7f94d3d0a2d64f4"; //TODO: Lägg in API-nyckeln från Classroom här.
   var url = `https://api.spoonacular.com/recipes/complexSearch?query=${searchString}&apiKey=${apiKey}`;
   console.log("Den URL vi kommer anropa: ", url);
+  // let apiKey = "78e6098494msh5377515b442380fp105906jsn6dc4264ee58c";
+  // let url = `https://api.yummly.com/v1/api/recipes?_app_id=${appId}&_app_key=${apiKey}&q=${searchString}`;
+  // console.log("The URL we will call: ", url);
 
   //Här används URLen för att göra anrop med den inbyggda funktionen fetch()
   let response = await fetch(url);
@@ -52,30 +55,41 @@ async function search(searchString) {
   och skriver ut det i en lista i DOMen.
 */
 function renderResults(results) {
-  let resultDiv = document.getElementById("searchresults"); //Hämtar ut diven med id="searchresults" för att lägga in resultatet där
-  // Använd console.log() för att skriva ut resultatet till konsollen och titta på det.
-  // Det är ofta bra att titta på hur resultatet ser ut för att få en förståelse för
-  // hur man kan skriva koden för att använda resultatet.
+  let resultdiv = document.getElementById("searchresults");
   console.log("resultatet: ", results);
 
-  // TODO: Hämta ut attributet av variablen res (res.results) som innehåller listan med resultat
-  // och tilldela variablen allObjects det värdet.
+  // if (resultdiv.children.length > 0) {
+  //   resultdiv.innerHTML = "";
+  // }
+
   let allObjects = results.results;
 
-  // Den här loopen används för att lägga in något i DOMen för varje objekt (film) i resultatet.
-
   for (let index = 0; index < allObjects.length; index++) {
+    // const object = allObjects[index];
+    // console.log("loopar igenom objekten ", object);
+    // let objectDiv = document.createElement("div");
+    // objectDiv.setAttribute("class", "object-div");
+    // objectDiv.innerHTML = `
+    // <img src = "${object.image} ""
+    // <h2> ${object.title} </h2>
+    // `;
+    // output.appendChild(objectDiv);
     const object = allObjects[index];
-    console.log("loopar igenom objekten ", object);
-    let objectDiv = document.createElement("div");
-    objectDiv.setAttribute("class", "object-div");
-    objectDiv.innerHTML = `
-    
-    <img src = "${object.image}" 
-    <h2> ${object.title} </h2>
+
+    let recipeCardHTML = `
+    <div class ="recipe-samling" >
+
+    <div class = "recipe-info"
+
+    <h2 class= "object-title" > ${object.title} </h2>
+    <img class="object-img" src  = "${object.image}" >
+
+    </div>
+    </div>
 
     
     `;
-    output.appendChild(objectDiv);
+
+    resultdiv.insertAdjacentHTML("beforeend", recipeCardHTML);
   }
 }
