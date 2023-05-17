@@ -84,7 +84,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #f8f9fa;
+  background-color: #6c757d;
   padding: 20px;
 }
 
@@ -120,17 +120,28 @@ h1 {
   width: 100%;
   object-fit: cover;
   border-radius: 10px;
-  margin-top: 20px;
 }
 
 .box {
-  background-color: red;
+  background-color: #e5383b;
   border-radius: 0 0 10px 10px;
   display: none;
   z-index: 100;
   height: 700px;
   width: 100%;
   transition: 0.3s;
+  overflow-y: auto;
+  color: #fff;
+}
+
+.box h4 {
+  font-size: 22px;
+  padding-top: 10px;
+}
+
+.box p {
+  font-size: 20px;
+  padding: 10px;
 }
 
 .recipe-btn {
@@ -138,9 +149,87 @@ h1 {
   height: 30px;
   margin: 10px auto;
   font-size: 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: #e5383b;
+  color: #f8f9fa;
+  cursor: pointer;
+}
+
+.recipe-btn:hover {
+  background-color: #d90429;
 }
 
 .box h3 {
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 10;
+}
+
+@media screen and (max-width: 700px) {
+  #searchresults {
+    padding: 10px;
+  }
+
+  .recipe-samling {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1320px) {
+  header {
+    padding: 0 50px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  header {
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+  .hamburger .line {
+    width: 30px;
+    height: 3px;
+    background: gray;
+    margin: 6px 0;
+  }
+  .nav-bar {
+    position: absolute;
+    height: 0;
+    top: 80px;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    background: #495057;
+    transition: 0.2s;
+    overflow: hidden;
+  }
+
+  .nav-bar.active {
+    height: 450px;
+  }
+
+  .nav-bar.active ul {
+    opacity: 1;
+  }
+
+  .nav-bar ul {
+    display: block;
+    width: fit-content;
+
+    margin: 80px auto 0 auto;
+    text-align: center;
+    transition: 0.5s;
+    opacity: 0;
+  }
+
+  .nav-bar ul li a {
+    margin-bottom: 20px;
+    color: #dc2f02;
+  }
 }
