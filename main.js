@@ -1,10 +1,14 @@
-let hamburger = document.querySelector(".hamburger");
-hamburger.onclick = function () {
-  let navBar = document.querySelector(".nav-bar");
-  navBar.classList.toggle("active");
-};
-
 let searchText = document.getElementById("txtSearch");
+
+window.addEventListener("scroll", function () {
+  var footer = document.getElementById("footer");
+  var footerPosition = footer.getBoundingClientRect().top;
+
+  var windowHeight = window.innerHeight;
+  if (footerPosition - windowHeight <= 0) {
+    footer.classList.add("slide-left");
+  }
+});
 
 searchText.onkeydown = async function (event) {
   if (event.key === "Enter") {
@@ -20,7 +24,7 @@ searchText.onkeydown = async function (event) {
 };
 
 async function search(searchString) {
-  let apiKey = "f031cac33f4e4de5b7f94d3d0a2d64f4";
+  let apiKey = "9a53df867d10449aafbda4db391217b1";
   let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchString}`;
 
   console.log("Den URL vi kommer anropa: ", url);
@@ -29,13 +33,11 @@ async function search(searchString) {
 
   let json = await response.json();
 
-  // Retrieve the individual recipes by making additional requests
   let recipes = json.results;
   let detailedRecipes = await Promise.all(
     recipes.map((recipe) => fetchRecipeDetails(recipe.id))
   );
 
-  // Add the detailed recipe information to each recipe object
   detailedRecipes.forEach((detailedRecipe, index) => {
     recipes[index].instructions = detailedRecipe.instructions;
     recipes[index].ingredients = getIngredientsList(detailedRecipe);
@@ -45,7 +47,7 @@ async function search(searchString) {
 }
 
 async function fetchRecipeDetails(recipeId) {
-  let apiKey = "13156a9135b3448c80c2c2cb8cac572e  ";
+  let apiKey = "9a53df867d10449aafbda4db391217b1";
   let url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`;
 
   let response = await fetch(url);
@@ -59,26 +61,34 @@ function getIngredientsList(recipe) {
   );
   return ingredients;
 }
-
 function renderResults(results) {
   let resultdiv = document.getElementById("searchresults");
-  resultdiv.innerHTML = ""; // Clear existing content
+  resultdiv.innerHTML = "";
 
   console.log("resultatet: ", results);
 
   let allObjects = results.results;
 
+  if (allObjects.length === 0) {
+    resultdiv.innerHTML = `<p class="no-recipes-found">No recipes found : /</p>`;
+    return;
+  }
+
   for (let index = 0; index < allObjects.length; index++) {
     const object = allObjects[index];
+
+    let recipeImage = object.image
+      ? `<img class="recipe-img" src="${object.image}" alt="${object.title}">`
+      : `<h2>${object.title}</h2>`;
 
     let recipeCardHTML = `
       <div class="recipe-samling">
         <div class="recipe-info">
-          <img class="recipe-img" src="${object.image}" alt="${object.title}">
+          ${recipeImage}
           <div class="recipe-title">
             <h2>${object.title}</h2>
           </div>
-          
+            
           <button class="recipe-btn">Instructions</button>
 
           <div class="box" style="display: none;">
@@ -91,7 +101,6 @@ function renderResults(results) {
             </ul>
             <h4>Instructions:</h4>
             <p>${object.instructions}</p>
-            <a href="${object.sourceUrl}" target="_blank">View Recipe</a>
           </div>
         </div>
       </div>
@@ -106,17 +115,18 @@ function renderResults(results) {
       event.preventDefault();
 
       let box = this.parentNode.querySelector(".box");
-      box.style.display = box.style.display === "none" ? "block" : "none";
-      if (box.style.display === "block") {
+      if (box.style.display === "none") {
+        box.style.display = "block";
         box.scrollIntoView({
           behavior: "smooth",
           block: "start",
           inline: "nearest",
         });
-        window.scrollBy(0, -50); // Adjust the scroll position by subtracting 50 pixels from the current position
+        this.textContent = "Close";
+      } else {
+        box.style.display = "none";
+        this.textContent = "Instructions";
       }
-      this.textContent =
-        box.style.display === "none" ? "Instructions" : "Close";
     });
   });
 }
