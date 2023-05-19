@@ -35,6 +35,10 @@ h1 {
 .hamburger {
   display: none;
 }
+.logo {
+  height: 20px;
+  width: 20px;
+}
 
 .nav-bar ul {
   display: flex;
