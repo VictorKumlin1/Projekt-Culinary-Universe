@@ -192,21 +192,3 @@ footer {
     color: #dc2f02;
   }
 }
-
-@media (max-width: 600px) {
-  .container .user-details {
-    max-width: 100%;
-  }
-
-  form .user-details .input-box {
-    width: 100%;
-  }
-
-  .container {
-    padding: 100px 30px;
-  }
-
-  form .user-details .input-box input {
-    font-size: 14px;
-  }
-}
