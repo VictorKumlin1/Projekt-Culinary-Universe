@@ -7,7 +7,7 @@
     <title>Projekt</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://kit.fontawesome.com/95260c0a30.js
-"></script>
+  "></script>
   </head>
   <body>
     <header>
@@ -23,56 +23,50 @@
             <a href="#" class="active">Home</a>
           </li>
           <li>
-            <a href="#" class="active">Recipes</a>
+            <a href="tabell.html" class="active">Table</a>
           </li>
           <li>
-            <a href="formulär.html" target="_blank" class="active">Sign In</a>
+            <a href="formulär.html" class="active">Sign In</a>
+          </li>
+          <li>
+            <a href="#footer" class="active">About us</a>
           </li>
         </ul>
       </nav>
     </header>
     <main>
-      <img class="bakgrundsbild" src="bakgrundsbild.jpg" alt="bakgrundsbild" />
-      <input type="text" id="txtSearch" />
-
-      <div id="output"></div>
-
-      <footer>
-        <div class="content">
-          <h3 id="footer-h3">Culinary Universe</h3>
-          <p>
-            Welcome to Culinary Universe, the ultimate destination for foodies
-            and cooking enthusiasts! Our website is dedicated to sharing the
-            most delicious and exciting recipes from around the world.
-          </p>
-          <ul class="socials">
-            <li>
-              <a href="https://www.facebook.com/CookingChannel/" target="_blank"
-                ><i class="fa fa-facebook" target="_blank"></i
-              ></a>
-
-              <a href="https://twitter.com/cobratate" target="_blank"
-                ><i class="fa fa-twitter"></i
-              ></a>
-
-              <a href="https://www.instagram.com/buzzfeedtasty/" target="_blank"
-                ><i class="fa fa-instagram"></i
-              ></a>
-            </li>
-          </ul>
+      <div class="bakgrundsbild"></div>
+      <section>
+        <div class="search-field">
+          <h2 class="h2-search">FIND A RECIPE</h2>
+          <input type="text" id="txtSearch" placeholder="Search Anything" />
         </div>
-        <div id="about">
-          <p>
-            Copyright © 2023 Culinary Universe All rights reserved. The contents
-            of this website, including but not limited to text, graphics,
-            images, and other material, are protected by copyright and other
-            intellectual property laws. The recipes featured on this website are
-            the property of Culinary Universe and are protected by copyright as
-            original works.
-          </p>
-        </div>
-      </footer>
+      </section>
+
+      <section>
+        <div id="searchresults"></div>
+      </section>
     </main>
+
+    <footer id="footer">
+      <div class="socials">
+        <a href="https://www.instagram.com/cookingvideos/?hl=sv" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://twitter.com/CookingChannel" target="_blank"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a href="https://www.facebook.com/CookingChannel/" target="_blank"
+          ><i class="fab fa-facebook"></i
+        ></a>
+      </div>
+
+      <p id="copyright">
+        © 2023 Culinary Universe. All rights reserved. Explore a world of
+        culinary delights, recipes, and inspiration.
+      </p>
+    </footer>
   </body>
   <script src="main.js"></script>
+  <script src="menu.js"></script>
 </html>
