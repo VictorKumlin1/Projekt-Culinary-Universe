@@ -1,3 +1,4 @@
+
 let searchText = document.getElementById("txtSearch");
 
 window.addEventListener("scroll", function () {
@@ -24,90 +25,62 @@ searchText.onkeydown = async function (event) {
 };
 
 async function search(searchString) {
-  let apiKey = "9a53df867d10449aafbda4db391217b1";
-  let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${searchString}`;
+  let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchString}`;
 
-  console.log("Den URL vi kommer anropa: ", url);
+  console.log("URL to be requested: ", url);
 
   let response = await fetch(url);
 
   let json = await response.json();
 
-  let recipes = json.results;
-  let detailedRecipes = await Promise.all(
-    recipes.map((recipe) => fetchRecipeDetails(recipe.id))
-  );
-
-  detailedRecipes.forEach((detailedRecipe, index) => {
-    recipes[index].instructions = detailedRecipe.instructions;
-    recipes[index].ingredients = getIngredientsList(detailedRecipe);
-  });
-
   return json;
 }
 
-async function fetchRecipeDetails(recipeId) {
-  let apiKey = "9a53df867d10449aafbda4db391217b1";
-  let url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`;
-
-  let response = await fetch(url);
-  let json = await response.json();
-  return json;
-}
-
-function getIngredientsList(recipe) {
-  let ingredients = recipe.extendedIngredients.map(
-    (ingredient) => `${ingredient.original}`
-  );
-  return ingredients;
-}
 function renderResults(results) {
   let resultdiv = document.getElementById("searchresults");
   resultdiv.innerHTML = "";
 
   console.log("resultatet: ", results);
 
-  let allObjects = results.results;
+  let allObjects = results.meals;
 
-  if (allObjects.length === 0) {
+  if (allObjects === null) {
     resultdiv.innerHTML = `<p class="no-recipes-found">No recipes found : /</p>`;
     return;
   }
 
-  for (let index = 0; index < allObjects.length; index++) {
-    const object = allObjects[index];
-
-    let recipeImage = object.image
-      ? `<img class="recipe-img" src="${object.image}" alt="${object.title}">`
-      : `<h2>${object.title}</h2>`;
-
+  allObjects.forEach((object) => {
     let recipeCardHTML = `
-      <div class="recipe-samling">
-        <div class="recipe-info">
-          ${recipeImage}
-          <div class="recipe-title">
-            <h2>${object.title}</h2>
-          </div>
-            
-          <button class="recipe-btn">Instructions</button>
+    <div class="recipe-samling">
+      <div class="recipe-info">
+        <div class="recipe-title">
+          <h2>${object.strMeal}</h2>
+        </div>
+        <img class="recipe-img" src="${object.strMealThumb}" alt="${
+      object.strMeal
+    }">
+  
+        <button class="recipe-btn">Instructions</button>
+  
+        <div class="box" style="display: none;">
+          <h3>${object.strMeal}:</h3>
+          <h4>Ingredients:</h4>
+          <ul>
+            ${getIngredientsList(object)}
+          </ul>
+          <h4>Instructions:</h4>
+          <p>${object.strInstructions}</p>
 
-          <div class="box" style="display: none;">
-            <h3>${object.title}:</h3>
-            <h4>Ingredients:</h4>
-            <ul>
-              ${object.ingredients
-                .map((ingredient) => `<li>${ingredient}</li>`)
-                .join("")}
-            </ul>
-            <h4>Instructions:</h4>
-            <p>${object.instructions}</p>
-          </div>
+        <a class="recipe-link" href="${
+          object.strSource
+        }" target="_blank">Go to Recipe</a>
         </div>
       </div>
-    `;
+    </div>
+  `;
 
     resultdiv.insertAdjacentHTML("beforeend", recipeCardHTML);
-  }
+  });
 
   let recipeButtons = document.querySelectorAll(".recipe-btn");
   recipeButtons.forEach((button) => {
@@ -129,4 +102,16 @@ function renderResults(results) {
       }
     });
   });
+}
+
+function getIngredientsList(recipe) {
+  let ingredients = [];
+  for (let i = 1; i <= 20; i++) {
+    if (recipe[`strIngredient${i}`]) {
+      ingredients.push(
+        `${recipe[`strIngredient${i}`]} - ${recipe[`strMeasure${i}`]}`
+      );
+    }
+  }
+  return ingredients.map((ingredient) => `<li>${ingredient}</li>`).join("");
 }
