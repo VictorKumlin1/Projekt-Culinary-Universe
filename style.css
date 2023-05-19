@@ -1,22 +1,26 @@
+/* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+/* Reset and global styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #6c757d;
 }
 
-.bakgrundsbild {
-  width: 100%;
-  height: 100vh;
-}
-
+/* Header styles */
 header {
   width: 100%;
   height: 80px;
@@ -68,24 +72,65 @@ h1 {
   border-bottom: #dc2f02 solid 5px;
 }
 
-#txtSearch {
-  height: 60px;
-  width: 600px;
-  border: 3px solid #6c757d;
-  border-radius: 10px;
-  font-size: 20px;
+/* Search section styles */
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-1500px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-left {
+  animation: slideInLeft 0.5s ease-in;
+}
+
+.h2-search {
+  font-size: 70px;
+  color: #333;
+  font-family: "Montserrat", sans-serif;
+  padding-bottom: 50px;
+  animation: slideInLeft 0.8s ease-in;
+}
+
+.bakgrundsbild {
+  background-image: url(bakgrundsbild.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
+#txtSearch {
+  width: 200px; /* Initial width */
+  height: 40px; /* Initial height */
+  border-radius: 20px; /* Initial border radius */
+  font-size: 20px;
+  text-align: center;
+  border: none;
+  border: 2px solid #dc2f02;
+  font-family: "Poppins", sans-serif;
+  transition: width 0.3s, height 0.3s, border-radius 0.3s; /* Add transition properties */
+}
+
 #searchresults {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #6c757d;
   padding: 20px;
+  margin-bottom: 50px;
 }
 
 .recipe-samling {
@@ -165,13 +210,115 @@ h1 {
   margin-bottom: 10;
 }
 
-@media screen and (max-width: 700px) {
+/* Footer styles */
+
+footer {
+  width: 100%;
+  padding: 40px 0;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #efefef;
+  font-family: "Poppins", sans-serif;
+}
+
+.socials {
+  padding: 20px 0;
+  display: flex;
+  gap: 30px;
+}
+
+.socials a {
+  color: #efefef;
+  font-size: 24px;
+}
+
+.socials a:hover {
+  color: #ff69b4;
+}
+
+.socials a:nth-child(2):hover {
+  color: #00acee;
+}
+
+.socials a:nth-child(3):hover {
+  color: #3b5998;
+}
+
+#copyright {
+  text-align: center;
+}
+
+.no-recipes-found {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 800px) {
+  #txtSearch:hover {
+    width: 600px; /* Width on hover */
+    height: 55px; /* Height on hover */
+    border-radius: 25px; /* Border radius on hover */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .h2-search {
+    font-size: 30px;
+    color: #efefef;
+  }
+}
+@media screen and (max-width: 750px) {
   #searchresults {
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .h2-search {
+    font-size: 30px;
+    color: #efefef;
+  }
+
+  #txtSearch {
+    width: 90%;
+    font-size: 16px;
   }
 
   .recipe-samling {
     width: 100%;
+    padding: 10px;
+  }
+
+  .recipe-info {
+    height: auto;
+  }
+
+  .recipe-title {
+    font-size: 16px;
+  }
+
+  .recipe-img {
+    height: 200px;
+  }
+
+  .recipe-btn {
+    font-size: 16px;
+    width: 150px;
+    height: 25px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #searchresults {
+    padding: 20px;
+  }
+
+  .recipe-samling {
+    width: 50%;
   }
 }
 
@@ -187,17 +334,19 @@ h1 {
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 860px) {
   .hamburger {
     display: block;
     cursor: pointer;
   }
+
   .hamburger .line {
     width: 30px;
     height: 3px;
     background: gray;
     margin: 6px 0;
   }
+
   .nav-bar {
     position: absolute;
     height: 0;
@@ -221,7 +370,6 @@ h1 {
   .nav-bar ul {
     display: block;
     width: fit-content;
-
     margin: 80px auto 0 auto;
     text-align: center;
     transition: 0.5s;
