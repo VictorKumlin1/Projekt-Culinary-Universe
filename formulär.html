@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="formulär.css" />
+    <script src="https://kit.fontawesome.com/95260c0a30.js"></script>
+
+    <title>Formulär</title>
+  </head>
+  <link
+    rel="shortcut icon"
+    href="android-chrome-192x192.png"
+    type="image/x-icon"
+  />
+
+  <body>
+    <header>
+      <h1>Culinary Universe</h1>
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <nav class="nav-bar">
+        <ul>
+          <li>
+            <a href="index.html" class="active">Home</a>
+          </li>
+          <li>
+            <a href="tabell.html" class="active">Table</a>
+          </li>
+          <li>
+            <a href="formulär.html" class="active">Sign In</a>
+          </li>
+          <li>
+            <a href="#footer" class="active">About us</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        <form>
+          <div class="user-details">
+            <div class="input-box">
+              <label for="name" class="details">Full name</label>
+              <input
+                name="name"
+                type="text"
+                placeholder="Enter Your Name"
+                id=""
+              />
+            </div>
+            <div class="input-box">
+              <label class="details">Username</label>
+              <input type="text" placeholder="Enter Your Username" id="" />
+            </div>
+            <div class="input-box">
+              <label class="details">Email</label>
+              <input type="email" placeholder="Enter Your email" id="" />
+            </div>
+            <div class="input-box">
+              <label class="details">Phone Number</label>
+              <input type="text" placeholder="Enter Your phone number" id="" />
+            </div>
+            <div class="input-box">
+              <label class="details">Password</label>
+              <input type="password" placeholder="Enter Your Password" id="" />
+            </div>
+            <div class="input-box">
+              <label class="details">Confirm Password</label>
+              <input type="password" placeholder="Confirm Password" id="" />
+            </div>
+          </div>
+
+          <label for="genders">Choose a gender</label>
+          <select name="genders" id="">
+            <option value="">Male</option>
+            <option value="">Female</option>
+            <option value="">Prefer not to say</option>
+          </select>
+          <div class="button">
+            <input type="submit" value="Register" />
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div class="socials">
+        <a href="https://www.instagram.com/cookingvideos/?hl=sv" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://twitter.com/CookingChannel" target="_blank"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a href="https://www.facebook.com/CookingChannel/" target="_blank"
+          ><i class="fab fa-facebook"></i
+        ></a>
+      </div>
+
+      <p id="copyright">
+        © 2023 Culinary Universe. All rights reserved. Explore a world of
+        culinary delights, recipes, and inspiration.
+      </p>
+    </footer>
+    <script src="menu.js"></script>
+  </body>
+</html>
