@@ -99,7 +99,7 @@ h1 {
 }
 
 .bakgrundsbild {
-  background-image: url(img/bakgrundsbild.jpg);
+  background-image: url(bakgrundsbild.jpg);
   background-size: cover;
   width: 100%;
   height: 100vh;
